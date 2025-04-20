@@ -1,0 +1,5 @@
+nest-server/node_modules
+nest-server/prisma/migrations
+nest-server/dist
+
+frontend/node_modules
