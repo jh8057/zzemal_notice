@@ -10,17 +10,23 @@ services:
       - "3306:3306"
     volumes:
       - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   backend:
     build: ./nest-server
     container_name: nest-backend
     ports:
       - "3000:3000"
-    command: sh -c "npx prisma migrate deploy && npm run initDB && npm run start"
+    command: sh -c "npx prisma migrate dev --name init && npm run initDB && npm run start"
     environment:
       DATABASE_URL: mysql://root:root@mysql:3306/notice_board
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
 
   frontend:
     build: ./frontend
