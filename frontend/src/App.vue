@@ -3,7 +3,6 @@
 <template>
   <nav>
     <router-link to="/">게시판</router-link>
-    <router-link to="/about">게시판등록</router-link>
   </nav>
 
   <router-view />

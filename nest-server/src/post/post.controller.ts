@@ -64,10 +64,7 @@ export class PostController {
     @Query('page') page = '1',
     @Query('pageSize') pageSize = '10',
   ) {
-    const pageNumber = parseInt(page, 10);
-    const pageSizeNumber = parseInt(pageSize, 10);
-
-    return this.postService.getPosts(title, author, pageNumber, pageSizeNumber);
+    return this.postService.getPosts(title, author, +page, +pageSize);
   }
 
   @Delete('delete/:id')

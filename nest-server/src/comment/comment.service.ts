@@ -29,7 +29,7 @@ export class CommentService {
     postId: number,
     page: number = 1,
     pageSize: number = 10,
-  ): Promise<Comments[]> {
+  ): Promise<(Comments & { replies?: Comments[] })[]> {
     return this.prisma.comments.findMany({
       where: { postId },
       include: { replies: true },
