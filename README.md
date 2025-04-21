@@ -2,8 +2,8 @@
 
 1. 소스를 다운 받습니다.
 2. docker를 실행합니다.
-   > docker-compose build
-   > docker-compose up
+   - docker-compose build
+   - docker-compose up
 
 ## 접속 URL
 
