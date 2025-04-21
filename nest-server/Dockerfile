@@ -12,6 +12,9 @@ COPY package.json ./
 
 RUN npm install
 
+# insert test data
+RUN npm run initDB
+
 RUN npx prisma migrate dev --name init
 RUN npx prisma generate
 

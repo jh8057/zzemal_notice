@@ -37,10 +37,7 @@ export class PostController {
       throw new Error('All fields are required');
     }
     const post = await this.postService.createPost(createPostDto);
-    await this.notificationService.sendKeywordNotification(
-      post.content,
-      post.author,
-    );
+    await this.notificationService.sendKeywordNotification(post.content);
     return post;
   }
 
@@ -56,10 +53,7 @@ export class PostController {
     },
   ) {
     const post = await this.postService.updatePost(id, updatePostDto);
-    await this.notificationService.sendKeywordNotification(
-      post.content,
-      post.author,
-    );
+    await this.notificationService.sendKeywordNotification(post.content);
     return post;
   }
 
