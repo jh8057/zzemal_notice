@@ -1,26 +1,15 @@
-# docker file
-# docker build -t node-server .
-
 FROM node:20-alpine
 
-# Create app directory
 WORKDIR /nest-server
 
-
-# Install app dependencies
 COPY package.json ./
-
 RUN npm install
 
-# insert test data
-RUN npm run initDB
-
-RUN npx prisma migrate dev --name init
-RUN npx prisma generate
-
-# Bundle app source
 COPY . .
+
+# 초기화 스크립트 및 Prisma 작업
+RUN npx prisma generate
 
 EXPOSE 3000
 
-CMD [ "npm","run", "start" ]
+CMD ["npm", "run", "start"]

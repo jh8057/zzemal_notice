@@ -16,6 +16,7 @@ services:
     container_name: nest-backend
     ports:
       - "3000:3000"
+    command: sh -c "npx prisma migrate deploy && npm run initDB && npm run start"
     environment:
       DATABASE_URL: mysql://root:root@mysql:3306/notice_board
     depends_on:
